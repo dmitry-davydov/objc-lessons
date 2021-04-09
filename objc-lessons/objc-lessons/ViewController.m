@@ -52,16 +52,16 @@ typedef NS_ENUM(NSInteger, Operation) {
     // Do any additional setup after loading the view.
     
     // MARK: - calculation
-//    [self calculateWithOperator:Plus arg1:1 arg2:2];
-//    [self calculateWithOperator:Minus arg1:1 arg2:2];
-//    [self calculateWithOperator:Multiply arg1:1 arg2:2];
-//    [self calculateWithOperator:Divide arg1:1 arg2:2];
-//
-//    NSArray* arr = [NSArray arrayWithObjects:@"One", @"Two", @"Three", @"Four", nil];
-//
-//    [self loopFmt:arr];
-//
-//    [self human];
+    //    [self calculateWithOperator:Plus arg1:1 arg2:2];
+    //    [self calculateWithOperator:Minus arg1:1 arg2:2];
+    //    [self calculateWithOperator:Multiply arg1:1 arg2:2];
+    //    [self calculateWithOperator:Divide arg1:1 arg2:2];
+    //
+    //    NSArray* arr = [NSArray arrayWithObjects:@"One", @"Two", @"Three", @"Four", nil];
+    //
+    //    [self loopFmt:arr];
+    //
+    //    [self human];
     
     [self students];
 }
@@ -164,7 +164,7 @@ typedef NS_ENUM(NSInteger, Operation) {
     
     for (Student* student in studentList) {
         NSLog(@"%@", student);
-    }    
+    }
 }
 
 @end
