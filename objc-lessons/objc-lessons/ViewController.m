@@ -6,6 +6,7 @@
 //
 
 #import "ViewController.h"
+#import "Student.h"
 
 @interface ViewController ()
 
@@ -51,16 +52,18 @@ typedef NS_ENUM(NSInteger, Operation) {
     // Do any additional setup after loading the view.
     
     // MARK: - calculation
-    [self calculateWithOperator:Plus arg1:1 arg2:2];
-    [self calculateWithOperator:Minus arg1:1 arg2:2];
-    [self calculateWithOperator:Multiply arg1:1 arg2:2];
-    [self calculateWithOperator:Divide arg1:1 arg2:2];
+    //    [self calculateWithOperator:Plus arg1:1 arg2:2];
+    //    [self calculateWithOperator:Minus arg1:1 arg2:2];
+    //    [self calculateWithOperator:Multiply arg1:1 arg2:2];
+    //    [self calculateWithOperator:Divide arg1:1 arg2:2];
+    //
+    //    NSArray* arr = [NSArray arrayWithObjects:@"One", @"Two", @"Three", @"Four", nil];
+    //
+    //    [self loopFmt:arr];
+    //
+    //    [self human];
     
-    NSArray* arr = [NSArray arrayWithObjects:@"One", @"Two", @"Three", @"Four", nil];
-    
-    [self loopFmt:arr];
-    
-    [self human];
+    [self students];
 }
 
 - (void)calculateWithOperator:(Operation)operator arg1: (NSInteger)arg1 arg2: (NSInteger) arg2 {
@@ -144,6 +147,24 @@ typedef NS_ENUM(NSInteger, Operation) {
     human2.age = 39;
     human2.gender = Woman;
     NSLog(@"Human name: %@, age: %d, gender: %@", human2.name, human2.age, [self formatGender:human2.gender]);
+}
+
+-(void) students {
+    
+    NSMutableArray* studentList = [NSMutableArray new];
+    [studentList addObject:[[Student alloc] initWithName:@"Name" surname:@"Surname" age:39]];
+    [studentList addObject:[[Student alloc] initWithName:@"Name1" surname:@"Surname1" age:38]];
+    [studentList addObject:[[Student alloc] initWithName:@"Name2" surname:@"Surname2" age:37]];
+    
+    for (Student* student in studentList) {
+        NSLog(@"%@", student);
+    }
+    
+    [studentList[0] incrementAge];
+    
+    for (Student* student in studentList) {
+        NSLog(@"%@", student);
+    }
 }
 
 @end
