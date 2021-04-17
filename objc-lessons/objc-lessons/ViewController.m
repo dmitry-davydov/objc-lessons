@@ -65,8 +65,10 @@ typedef NS_ENUM(NSInteger, Operation) {
     //
     //    [self human];
     
-    [self students];
-    [self birds];
+//    [self students];
+//    [self birds];
+    
+    [self blocks];
 }
 
 - (void)calculateWithOperator:(Operation)operator arg1: (NSInteger)arg1 arg2: (NSInteger) arg2 {
@@ -193,6 +195,29 @@ typedef NS_ENUM(NSInteger, Operation) {
     [collection addBird:[[Bird alloc] initWithNumber:7]];
     
     [collection release];
+}
+
+- (void) blocks
+{
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0);
+    
+    for (NSInteger i = 0; i < 10; i++) {
+        dispatch_async(queue, ^{
+            NSLog(@"Async queue block with integer %d", i);
+        });
+    }
+    
+    void (^log)(NSInteger) = ^(NSInteger num) {
+        NSLog(@"Log from anonimous fn %d", num);
+    };
+    
+    for (NSInteger i = 0; i < 10; i++) {
+        dispatch_async(queue, ^{
+            log(i);
+        });
+    }
+    
 }
 
 @end
