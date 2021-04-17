@@ -9,6 +9,7 @@
 #import "Student.h"
 #import "Bird.h"
 #import "BirdCollection.h"
+#import "Operation.h"
 
 @interface ViewController ()
 
@@ -218,6 +219,13 @@ typedef NS_ENUM(NSInteger, Operation) {
         });
     }
     
+    
+    NSOperationQueue *customQueue = [[NSOperationQueue alloc] init];
+    [customQueue addOperation:[[QueueOperation alloc] init]];
+    
+    [customQueue addOperationWithBlock:^{
+        NSLog(@"Operation on custom queue with block");
+    }];
 }
 
 @end
