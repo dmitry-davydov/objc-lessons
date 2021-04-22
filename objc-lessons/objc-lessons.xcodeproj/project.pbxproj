@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A01E166262B33D700437BBD /* Operation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01E165262B33D700437BBD /* Operation.m */; };
-		0A2AAF932627742B0034A9EB /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2AAF922627742B0034A9EB /* Bird.m */; };
-		0A2AAF97262775F50034A9EB /* BirdCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2AAF96262775F50034A9EB /* BirdCollection.m */; };
-		0A54777426205D9500271335 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A54777326205D9500271335 /* Student.m */; };
 		0A72FF75260780DD0021547A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A72FF74260780DD0021547A /* AppDelegate.m */; };
 		0A72FF78260780DD0021547A /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A72FF77260780DD0021547A /* SceneDelegate.m */; };
 		0A72FF7B260780DD0021547A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A72FF7A260780DD0021547A /* ViewController.m */; };
@@ -21,14 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A01E164262B33D700437BBD /* Operation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Operation.h; sourceTree = "<group>"; };
-		0A01E165262B33D700437BBD /* Operation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Operation.m; sourceTree = "<group>"; };
-		0A2AAF912627742B0034A9EB /* Bird.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bird.h; sourceTree = "<group>"; };
-		0A2AAF922627742B0034A9EB /* Bird.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bird.m; sourceTree = "<group>"; };
-		0A2AAF95262775F50034A9EB /* BirdCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdCollection.h; sourceTree = "<group>"; };
-		0A2AAF96262775F50034A9EB /* BirdCollection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirdCollection.m; sourceTree = "<group>"; };
-		0A54777226205D9500271335 /* Student.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
-		0A54777326205D9500271335 /* Student.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
 		0A72FF70260780DD0021547A /* objc-lessons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "objc-lessons.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A72FF73260780DD0021547A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0A72FF74260780DD0021547A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -84,14 +72,6 @@
 				0A72FF81260780DE0021547A /* LaunchScreen.storyboard */,
 				0A72FF84260780DE0021547A /* Info.plist */,
 				0A72FF85260780DE0021547A /* main.m */,
-				0A54777226205D9500271335 /* Student.h */,
-				0A54777326205D9500271335 /* Student.m */,
-				0A2AAF912627742B0034A9EB /* Bird.h */,
-				0A2AAF922627742B0034A9EB /* Bird.m */,
-				0A2AAF95262775F50034A9EB /* BirdCollection.h */,
-				0A2AAF96262775F50034A9EB /* BirdCollection.m */,
-				0A01E164262B33D700437BBD /* Operation.h */,
-				0A01E165262B33D700437BBD /* Operation.m */,
 			);
 			path = "objc-lessons";
 			sourceTree = "<group>";
@@ -167,12 +147,8 @@
 			files = (
 				0A72FF7B260780DD0021547A /* ViewController.m in Sources */,
 				0A72FF75260780DD0021547A /* AppDelegate.m in Sources */,
-				0A2AAF932627742B0034A9EB /* Bird.m in Sources */,
-				0A54777426205D9500271335 /* Student.m in Sources */,
 				0A72FF86260780DE0021547A /* main.m in Sources */,
 				0A72FF78260780DD0021547A /* SceneDelegate.m in Sources */,
-				0A2AAF97262775F50034A9EB /* BirdCollection.m in Sources */,
-				0A01E166262B33D700437BBD /* Operation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +183,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -266,7 +242,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;

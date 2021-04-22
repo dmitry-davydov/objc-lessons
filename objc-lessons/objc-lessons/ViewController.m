@@ -6,226 +6,101 @@
 //
 
 #import "ViewController.h"
-#import "Student.h"
-#import "Bird.h"
-#import "BirdCollection.h"
-#import "Operation.h"
+
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+#define HALF_SCREEN_WIDTH SCREEN_WIDTH/2
+#define HALF_SCREEN_HEIGHT SCREEN_HEIGHT/2
+#define MAX_SCORE 6
 
 @interface ViewController ()
+
+@property (strong, nonatomic) UIImageView *paddleTop;
+@property (strong, nonatomic) UIImageView *paddleBottom;
+@property (strong, nonatomic) UIView *gridView;
+@property (strong, nonatomic) UIView *ball;
+@property (strong, nonatomic) UITouch *topTouch;
+@property (strong, nonatomic) UITouch *bottomTouch;
+@property (strong, nonatomic) NSTimer *timer;
+@property (nonatomic) CGFloat dx;
+@property (nonatomic) CGFloat dy;
+@property (nonatomic) CGFloat speed;
+@property (strong, nonatomic) UILabel *scoreTop;
+@property (strong, nonatomic) UILabel *scoreBottom;
 
 @end
 
 @implementation ViewController
 
-typedef NS_ENUM(NSInteger, HumanGender) {
-    Man,
-    Woman
-};
-
-struct Human {
-    NSString *name;
-    NSInteger age;
-    HumanGender gender;
-};
-
-typedef NS_ENUM(NSInteger, Operation) {
-    Plus,
-    Minus,
-    Multiply,
-    Divide
-};
-
-- (NSString*) formatOperation: (Operation) op {
-    switch (op) {
-        case Plus:
-            return @"+";
-        case Minus:
-            return @"-";
-        case Multiply:
-            return @"*";
-        case Divide:
-            return @"/";
-        default:
-            break;
-    }
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    // MARK: - calculation
-    //    [self calculateWithOperator:Plus arg1:1 arg2:2];
-    //    [self calculateWithOperator:Minus arg1:1 arg2:2];
-    //    [self calculateWithOperator:Multiply arg1:1 arg2:2];
-    //    [self calculateWithOperator:Divide arg1:1 arg2:2];
-    //
-    //    NSArray* arr = [NSArray arrayWithObjects:@"One", @"Two", @"Three", @"Four", nil];
-    //
-    //    [self loopFmt:arr];
-    //
-    //    [self human];
-    
-//    [self students];
-//    [self birds];
-    
-    [self blocks];
+    [self config];
 }
 
-- (void)calculateWithOperator:(Operation)operator arg1: (NSInteger)arg1 arg2: (NSInteger) arg2 {
-    CGFloat result;
-    if (operator == Plus) {
-        result = [self summA:arg1 andB:arg2];
-    } else if (operator == Minus) {
-        result = [self minusA:arg1 andB:arg2];
-    } else if (operator == Multiply) {
-        result = [self multiplyA:arg1 andB:arg2];
-    } else if (operator == Divide) {
-        result = [self divideA:arg1 andB:arg2];
-    } else {
-        result = 0;
-    }
+- (void)config {
+    self.view.backgroundColor = [UIColor colorWithRed:100.0/255.0 green:135.0/255.0 blue:191.0/255.0 alpha:1.0];
     
-    [self formatOperation:operator arg1:arg1 arg2:arg2 result:result];
+    [self setupGrid];
+    [self setupTopPaddle];
+    [self setupBottomPaddle];
+    [self setupBall];
+    [self setupTopScore];
+    [self setupBottomScore];
 }
 
-- (void) formatOperation: (Operation) operation arg1: (NSInteger) arg1 arg2: (NSInteger) arg2 result:(CGFloat) result {
-    NSLog(@"OPERATION: %li %@ %li = %f", (long)arg1, [self formatOperation:operation], arg2, result);
-}
-
-- (CGFloat) summA: (NSInteger)a andB: (NSInteger) b {
-    return a + b;
-}
-
-- (CGFloat) minusA: (NSInteger)a andB: (NSInteger) b {
-    return a - b;
-}
-
-- (CGFloat) multiplyA: (NSInteger) a andB:(NSInteger) b {
-    return a * b;
-}
-
-- (CGFloat) divideA: (NSInteger) a andB: (NSInteger) b {
-    if (b == 0) {
-        return 0;
-    }
-    
-    return (CGFloat)a / (CGFloat)b;
-}
-
-- (void) loopFmt: (NSArray*) arr {
-    NSLog(@"Print arr with for loop");
-    for (NSInteger i = 0; i < arr.count - 1; i++) {
-        NSLog(@"%@", arr[i]);
-    }
-    
-    NSLog(@"Print arr with do while loop");
-    
-    if (arr.count == 0) {
-        return ;
-    }
-    
-    NSInteger i = 0;
-    do {
-        NSLog(@"%@", arr[i]);
-        i++;
-    } while(i < arr.count);
-}
-
--(NSString*) formatGender: (HumanGender) gender {
-    switch (gender) {
-        case Man:
-            return @"Man";
-        case Woman:
-            return @"Woman";
-    }
-}
-
-- (void) human {
-    struct Human human1;
-    human1.name = @"Name1";
-    human1.age = 29;
-    human1.gender = Man;
-    NSLog(@"Human name: %@, age: %d, gender: %@", human1.name, human1.age, [self formatGender:human1.gender]);
-    
-    [human1.name release];
-    
-    struct Human human2;
-    human2.name = @"Name2";
-    human2.age = 39;
-    human2.gender = Woman;
-    NSLog(@"Human name: %@, age: %d, gender: %@", human2.name, human2.age, [self formatGender:human2.gender]);
-    
-    [human2.name release];
-}
-
--(void) students {
-    
-    NSMutableArray* studentList = [NSMutableArray new];
-    [studentList addObject:[[Student alloc] initWithName:@"Name" surname:@"Surname" age:39]];
-    [studentList addObject:[[Student alloc] initWithName:@"Name1" surname:@"Surname1" age:38]];
-    [studentList addObject:[[Student alloc] initWithName:@"Name2" surname:@"Surname2" age:37]];
-    
-    for (Student* student in studentList) {
-        NSLog(@"%@", student);
-    }
-    
-    [studentList[0] incrementAge];
-    
-    for (Student* student in studentList) {
-        NSLog(@"%@", student);
-    }
-    
-    for (Student* student in studentList) {
-        [student.name release];
-        [student.surname release];
-        [student release];
-    }
-}
-
-- (void) birds
+- (void)setupBottomScore
 {
-    BirdCollection* collection = [[BirdCollection alloc] init];
-
-    [collection addBird:[[Bird alloc] initWithNumber:1]];
-    [collection addBird:[[Bird alloc] initWithNumber:2]];
-    [collection addBird:[[Bird alloc] initWithNumber:3]];
-    [collection addBird:[[Bird alloc] initWithNumber:4]];
-    [collection addBird:[[Bird alloc] initWithNumber:5]];
-    [collection addBird:[[Bird alloc] initWithNumber:6]];
-    [collection addBird:[[Bird alloc] initWithNumber:7]];
-    
-    [collection release];
+    _scoreBottom = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 70, HALF_SCREEN_HEIGHT + 20, 50, 50)];
+    _scoreBottom.textColor = [UIColor whiteColor];
+    _scoreBottom.text = @"0";
+    _scoreBottom.font = [UIFont systemFontOfSize:40.0 weight:UIFontWeightLight];
+    _scoreBottom.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:_scoreBottom];
 }
 
-- (void) blocks
+- (void)setupTopScore
 {
-    
-    dispatch_queue_t queue = dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0);
-    
-    for (NSInteger i = 0; i < 10; i++) {
-        dispatch_async(queue, ^{
-            NSLog(@"Async queue block with integer %d", i);
-        });
-    }
-    
-    void (^log)(NSInteger) = ^(NSInteger num) {
-        NSLog(@"Log from anonimous fn %d", num);
-    };
-    
-    for (NSInteger i = 0; i < 10; i++) {
-        dispatch_async(queue, ^{
-            log(i);
-        });
-    }
-    
-    
-    NSOperationQueue *customQueue = [[NSOperationQueue alloc] init];
-    [customQueue addOperation:[[QueueOperation alloc] init]];
-    
-    [customQueue addOperationWithBlock:^{
-        NSLog(@"Operation on custom queue with block");
-    }];
+    _scoreTop = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 70, HALF_SCREEN_HEIGHT - 70, 50, 50)];
+    _scoreTop.textColor = [UIColor whiteColor];
+    _scoreTop.text = @"0";
+    _scoreTop.font = [UIFont systemFontOfSize:40.0 weight:UIFontWeightLight];
+    _scoreTop.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:_scoreTop];
 }
+
+- (void)setupBall
+{
+    _ball = [[UIView alloc] initWithFrame:CGRectMake(self.view.center.x - 10, self.view.center.y - 10, 20, 20)];
+    _ball.backgroundColor = [UIColor whiteColor];
+    _ball.layer.cornerRadius = 10;
+    _ball.hidden = YES;
+    [self.view addSubview:_ball];
+}
+
+- (void)setupBottomPaddle
+{
+    _paddleBottom = [[UIImageView alloc] initWithFrame:CGRectMake(30, SCREEN_HEIGHT - 90, 90, 60)];
+    _paddleBottom.image = [UIImage imageNamed:@"paddleBottom"];
+    _paddleBottom.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:_paddleBottom];
+}
+
+- (void)setupTopPaddle
+{
+    _paddleTop = [[UIImageView alloc] initWithFrame:CGRectMake(30, 40, 90, 60)];
+    _paddleTop.image = [UIImage imageNamed:@"paddleTop"];
+    _paddleTop.contentMode = UIViewContentModeScaleAspectFit;
+    [self.view addSubview:_paddleTop];
+}
+
+- (void)setupGrid
+{
+    _gridView = [[UIView alloc] initWithFrame:CGRectMake(0, HALF_SCREEN_HEIGHT - 2, SCREEN_WIDTH, 4)];
+    _gridView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
+    [self.view addSubview:_gridView];
+}
+
+
+
 
 @end
