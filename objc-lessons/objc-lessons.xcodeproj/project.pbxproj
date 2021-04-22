@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A01E166262B33D700437BBD /* Operation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A01E165262B33D700437BBD /* Operation.m */; };
 		0A2AAF932627742B0034A9EB /* Bird.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2AAF922627742B0034A9EB /* Bird.m */; };
 		0A2AAF97262775F50034A9EB /* BirdCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2AAF96262775F50034A9EB /* BirdCollection.m */; };
 		0A54777426205D9500271335 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A54777326205D9500271335 /* Student.m */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A01E164262B33D700437BBD /* Operation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Operation.h; sourceTree = "<group>"; };
+		0A01E165262B33D700437BBD /* Operation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Operation.m; sourceTree = "<group>"; };
 		0A2AAF912627742B0034A9EB /* Bird.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bird.h; sourceTree = "<group>"; };
 		0A2AAF922627742B0034A9EB /* Bird.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bird.m; sourceTree = "<group>"; };
 		0A2AAF95262775F50034A9EB /* BirdCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BirdCollection.h; sourceTree = "<group>"; };
@@ -87,6 +90,8 @@
 				0A2AAF922627742B0034A9EB /* Bird.m */,
 				0A2AAF95262775F50034A9EB /* BirdCollection.h */,
 				0A2AAF96262775F50034A9EB /* BirdCollection.m */,
+				0A01E164262B33D700437BBD /* Operation.h */,
+				0A01E165262B33D700437BBD /* Operation.m */,
 			);
 			path = "objc-lessons";
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 				0A72FF86260780DE0021547A /* main.m in Sources */,
 				0A72FF78260780DD0021547A /* SceneDelegate.m in Sources */,
 				0A2AAF97262775F50034A9EB /* BirdCollection.m in Sources */,
+				0A01E166262B33D700437BBD /* Operation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
