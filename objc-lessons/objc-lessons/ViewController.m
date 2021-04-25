@@ -32,9 +32,51 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    NSLog(@"view did load");
     [self config];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // вызывается после viewDidLoad
+    NSLog(@"view will appear");
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    // вызывается после viewWillAppear
+    NSLog(@"view did appear");
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    // будет произведен уход с экрана
+    [super viewWillDisappear:animated];
+    NSLog(@"view will disapear");
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    // уход с экрана произошел
+    [super viewDidDisappear:animated];
+    NSLog(@"view did disapear");
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    NSLog(@"view will layout subviews");
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    NSLog(@"view did layout subviews");
 }
 
 - (void)config {
